@@ -20,10 +20,6 @@ class ViewModel: ObservableObject {
         model.add3Cards()
     }
     
-    func deck() {
-        model.checkForEmptyDeck()
-    }
-    
     func newGame() {
         model.newGameButton()
     }
@@ -35,6 +31,7 @@ class ViewModel: ObservableObject {
     func deckCounter() -> Int {
         return model.deckCounter()
     }
+    
     func shuffleDeck() {
         shuffleDeck()
     }

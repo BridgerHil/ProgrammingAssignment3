@@ -11,10 +11,22 @@ struct SetGame {
     
     private(set) var currentDeck = SetCardDeck()
     private(set) var cards = [SetCard]()
+    private(set) var selectedCards = [SetCard]()
+
     
     mutating func selectCard(_ card: SetCard) {
         if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}) {
             cards[chosenIndex].isSelected.toggle()
+            if cards[chosenIndex].isSelected {
+                selectedCards.append(cards[chosenIndex])
+            } else   {
+                for i in 0..<selectedCards.count {
+                    if selectedCards[i] == cards[chosenIndex] {
+                        selectedCards.remove(at: i)
+                    }
+                }
+                
+            }
         }
     }
     
@@ -28,17 +40,9 @@ struct SetGame {
         set12Cards()
     }
     
-    mutating func checkForEmptyDeck() {
-        if currentDeck.isEmpty() {
-            //don't allow player to add more cards(maybe disable button)
-            return
-        }
-    }
-    
     mutating func add3Cards() {
         print(currentDeck.count())
         for _ in 0...2 {
-            checkForEmptyDeck()
             cards.append(currentDeck.remove())
         }
     }
