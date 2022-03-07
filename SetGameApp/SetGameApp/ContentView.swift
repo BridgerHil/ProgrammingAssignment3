@@ -20,12 +20,7 @@ struct ContentView: View {
             HStack {
                 newGame
                 Spacer()
-                if viewModel.deckCounter() > 0 {
-                    plusThree
-                } else {
-                    Text("No Cards Remaining")
-                        .foregroundColor(.red)
-                }
+                plusThree
             }
             .padding(.horizontal)
         }
